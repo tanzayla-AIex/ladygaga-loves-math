@@ -1,0 +1,273 @@
+export const problems = [
+  {
+    id: "g1",
+    skill: "geo-id",
+    level: "foundation",
+    prompt: "Consider the geometric sequence $10, 20, 40, 80, \\ldots$. Write down $u_1$ and the common ratio $r$.",
+    answer: { type: "list", values: [10, 2] },
+    input: { kind: "text", placeholder: "u1, r" },
+    need: {
+      goal: "$u_1$ and $r$",
+      have: "consecutive terms",
+      first: "$u_1$ is the first listed term. $r$ is a term divided by the previous term.",
+    },
+    hints: [
+      {
+        k: "Why we divide, not subtract",
+        b: "Geometric means you <em>multiply</em> by the same number each time. That number is the common ratio $r=\\dfrac{u_2}{u_1}$. Subtracting would be looking for a common difference.",
+      },
+      {
+        k: "Read $u_1$ and $r$ off the list",
+        b: "$u_1=10$ and $r=\\dfrac{20}{10}=2$. Checking: $\\dfrac{40}{20}=2$ as well.",
+      },
+    ],
+    solution: "$u_1=10$, $r=2$.",
+  },
+  {
+    id: "g2",
+    skill: "geo-id",
+    level: "foundation",
+    prompt: "The geometric sequence $16,\\ 8,\\ a,\\ 2,\\ b,\\ \\ldots$ has common ratio $r=\\dfrac{1}{2}$. Find $a$.",
+    answer: { type: "number", value: 4 },
+    input: { kind: "text", placeholder: "a" },
+    need: {
+      goal: "the third term $a$",
+      have: "$u_1=16$, $r=1/2$",
+      first: "Each term is the previous one multiplied by $r=\\dfrac{1}{2}$. So $a$ is one step on from $8$.",
+    },
+    hints: [
+      {
+        k: "Why we do not need a new formula",
+        b: "You already have $r$. The third term is $u_3=u_2 r$. In IB this is the same as $u_3=u_1 r^{2}$.",
+      },
+      {
+        k: "One step from $8$",
+        b: "$a=8\\times \\dfrac{1}{2}=4$. As a check, the next given term should be $4\\times \\dfrac{1}{2}=2$, which matches.",
+      },
+    ],
+    solution: "$a=4$.",
+  },
+  {
+    id: "g3",
+    skill: "geo-id",
+    level: "practice",
+    prompt: "The first four terms of a sequence are $18, 54, 162, 486$. Find the common ratio $r$.",
+    answer: { type: "number", value: 3 },
+    input: { kind: "text", placeholder: "r" },
+    need: {
+      goal: "$r$",
+      have: "four terms",
+      first: "Check $u_2/u_1=u_3/u_2=u_4/u_3$. That common value is $r$.",
+    },
+    hints: [
+      {
+        k: "Why we check every pair",
+        b: "IB often says “use all four terms to show that this is geometric.” That means $\\dfrac{u_2}{u_1}=\\dfrac{u_3}{u_2}=\\dfrac{u_4}{u_3}$. One pair is not a proof.",
+      },
+      {
+        k: "Divide consecutive terms",
+        b: "$\\dfrac{54}{18}=3$, $\\dfrac{162}{54}=3$, $\\dfrac{486}{162}=3$. So $r=3$.",
+      },
+    ],
+    solution: "$r=3$.",
+  },
+  {
+    id: "g4",
+    skill: "geo-two",
+    level: "practice",
+    prompt: "The first term of a geometric sequence is $5$ and the fourth term is $40$. Find $r$ (take the real value).",
+    answer: { type: "number", value: 2 },
+    input: { kind: "text", placeholder: "r" },
+    need: {
+      goal: "$r$",
+      have: "$u_1=5$, $u_4=40$",
+      first: "$u_4=u_1 r^{3}$, because you multiply by $r$ three times to get from term $1$ to term $4$. Solve for $r$.",
+    },
+    hints: [
+      {
+        k: "Why the power is $3$, not $4$",
+        b: "The booklet says $u_n=u_1 r^{n-1}$. Here $n=4$, so the power is $n-1=3$. Using $r^4$ is the geometric off-by-one.",
+      },
+      {
+        k: "Solve",
+        b: "$5r^3=40 \\Rightarrow r^3=8 \\Rightarrow r=2$ (the real cube root).",
+      },
+    ],
+    solution: "$r=2$.",
+  },
+  {
+    id: "g5",
+    skill: "geo-two",
+    level: "practice",
+    prompt: "A geometric sequence has second term $12$ and fifth term $324$. Find $r$.",
+    answer: { type: "number", value: 3 },
+    input: { kind: "text", placeholder: "r" },
+    need: {
+      goal: "$r$",
+      have: "$u_2=12$, $u_5=324$",
+      first: "$u_5/u_2=r^{3}$. The positions differ by $3$.",
+    },
+    hints: [
+      { k: "Ratio of the two terms", b: "$324/12=r^{5-2}=r^3$." },
+      { k: "Solve", b: "$r^3=27$." },
+    ],
+    solution: "$r=3$.",
+  },
+  {
+    id: "g6",
+    skill: "geo-two",
+    level: "challenge",
+    prompt: "The seventh term of a geometric sequence is $108$ and the eighth term is $36$. Find $u_1$.",
+    answer: { type: "number", value: 78732 },
+    input: { kind: "text", placeholder: "u1" },
+    need: {
+      goal: "$u_1$",
+      have: "$u_7$ and $u_8$",
+      first: "Find $r=\\dfrac{u_8}{u_7}$ immediately — consecutive terms make $r$ obvious. Then walk back to $u_1$ using $u_7=u_1 r^{6}$.",
+    },
+    hints: [
+      {
+        k: "Why $r$ from $u_8/u_7$",
+        b: "Two consecutive terms are the cheapest way to get $r$. You do not need $u_1$ for that step.",
+      },
+      {
+        k: "Then unwind",
+        b: "$r=\\dfrac{36}{108}=\\dfrac{1}{3}$. Then $108=u_1\\left(\\dfrac{1}{3}\\right)^{6}=\\dfrac{u_1}{729}$, so $u_1=108\\times 729=78732$.",
+      },
+    ],
+    solution: "$u_1=78732$.",
+  },
+  {
+    id: "g7",
+    skill: "geo-n",
+    level: "practice",
+    prompt: "A geometric sequence has $u_n=18\\times 3^{n-1}$. If $u_n=1062882$, find $n$.",
+    answer: { type: "number", value: 11 },
+    input: { kind: "text", placeholder: "n" },
+    need: {
+      goal: "$n$",
+      have: "an explicit geometric formula and a target value",
+      first: "Divide both sides by $18$, then recognise a power of $3$.",
+    },
+    hints: [
+      { k: "Isolate the power", b: "$3^{n-1}=1062882/18=59049$." },
+      { k: "Recognise", b: "$3^{10}=59049$, so $n-1=10$." },
+    ],
+    solution: "$n=11$.",
+  },
+  {
+    id: "g8",
+    skill: "geo-n",
+    level: "challenge",
+    prompt: "A geometric sequence has $u_1=5$ and $r=2$. Find the smallest $n$ such that $u_n>1000$.",
+    answer: { type: "number", value: 9 },
+    input: { kind: "text", placeholder: "n" },
+    need: {
+      goal: "smallest $n$ with $5\\times 2^{n-1}>1000$",
+      have: "$u_1$ and $r$",
+      first: "Solve $2^{n-1}>200$, then check the integers around the logarithm.",
+    },
+    hints: [
+      { k: "Inequality", b: "$2^{n-1}>200$." },
+      { k: "Powers of two", b: "$2^7=128$, $2^8=256$. So $n-1=8$ is the first that works." },
+    ],
+    solution: "$n=9$ ($u_8=640$, $u_9=1280$).",
+  },
+  {
+    id: "g9",
+    skill: "geo-n",
+    level: "challenge",
+    prompt: "A geometric sequence of positive terms has $u_1=2$ and $r=1.05$. Find the smallest term that is greater than $500$, rounded to the nearest integer.",
+    answer: { type: "number", value: 521 },
+    input: { kind: "text", placeholder: "that term, nearest integer" },
+    need: {
+      goal: "the first $u_n>500$",
+      have: "$u_1=2$, $r=1.05$",
+      first: "Solve $2(1.05)^{n-1}>500$ for $n$, then compute that term.",
+    },
+    hints: [
+      { k: "Take logs", b: "$(1.05)^{n-1}>250 \\Rightarrow n-1>\\ln 250/\\ln 1.05\\approx 113.17$." },
+      { k: "Check nearby terms", b: "$n-1=113$ gives $u_{114}=2(1.05)^{113}\\approx 496<500$. So the first success is $n=115$." },
+      { k: "The term", b: "$u_{115}=2(1.05)^{114}\\approx 520.7$, which rounds to $521$." },
+    ],
+    solution: "$521$ (from $u_{115}\\approx 520.7$).",
+  },
+  {
+    id: "g10",
+    skill: "geo-sign",
+    level: "practice",
+    prompt: "The first term of a geometric sequence is $18$ and the third term is $8$. One possible common ratio is $2/3$. Find the other possible value of $r$.",
+    answer: { type: "number", value: -2 / 3 },
+    input: { kind: "text", placeholder: "the other r" },
+    need: {
+      goal: "the second possible $r$",
+      have: "$u_1=18$, $u_3=8$",
+      first: "$u_3=u_1 r^{2}$, so $r$ is a square root and has two signs. The question already used the positive one; the other is the negative root.",
+    },
+    hints: [
+      {
+        k: "Why two possible sequences",
+        b: "Squaring hides the sign: $r^2=\\dfrac{8}{18}=\\dfrac{4}{9}$ gives $r=\\pm\\dfrac{2}{3}$. Both make $u_3=8$. IB almost always wants you to mention both unless the terms are all positive.",
+      },
+      {
+        k: "The other value",
+        b: "The positive root $\\dfrac{2}{3}$ was given, so the other is $r=-\\dfrac{2}{3}$.",
+      },
+    ],
+    solution: "$r=-2/3$.",
+  },
+  {
+    id: "g11",
+    skill: "geo-sign",
+    level: "challenge",
+    prompt: "Let $5, x, 45$ be consecutive terms of a geometric sequence. Find the possible values of $x$. Enter the positive value first, then the negative value.",
+    answer: { type: "list", values: [15, -15] },
+    input: { kind: "text", placeholder: "x values, positive first" },
+    need: {
+      goal: "both possible $x$",
+      have: "three consecutive geometric terms",
+      first: "The geometric test is $x^2=5\\times 45$.",
+    },
+    hints: [
+      { k: "Middle-square test", b: "$x^2=225$." },
+      { k: "Two answers", b: "$x=\\pm 15$. Both give a real common ratio ($3$ or $-3$)." },
+    ],
+    solution: "$15$ and $-15$.",
+  },
+  {
+    id: "g12",
+    skill: "geo-word",
+    level: "practice",
+    prompt: "Tuition fees for three years are $2000$, $2500$, $3125$ dollars and form a geometric sequence. Find the common ratio $r$.",
+    answer: { type: "number", value: 1.25 },
+    input: { kind: "text", placeholder: "r" },
+    need: {
+      goal: "$r$",
+      have: "three consecutive fees",
+      first: "Divide a year by the previous year. Check the next pair matches.",
+    },
+    hints: [
+      { k: "First ratio", b: "$2500/2000=1.25$." },
+      { k: "Check", b: "$3125/2500=1.25$ as well." },
+    ],
+    solution: "$r=1.25$.",
+  },
+  {
+    id: "g13",
+    skill: "geo-word",
+    level: "challenge",
+    prompt: "A town has population $40000$ at the end of $1996$ and $44100$ at the end of $1998$, growing geometrically each year. Find the population at the end of $1997$.",
+    answer: { type: "number", value: 42000 },
+    input: { kind: "text", placeholder: "population" },
+    need: {
+      goal: "the middle term of three geometric years",
+      have: "$u_{1996}=40000$, $u_{1998}=44100$",
+      first: "The $1997$ figure is the geometric mean: $\\sqrt{40000\\times 44100}$.",
+    },
+    hints: [
+      { k: "Two steps of the same $r$", b: "$40000\\, r^2=44100$, so $r=\\sqrt{44100/40000}=21/20=1.05$." },
+      { k: "Middle year", b: "$40000\\times 1.05$." },
+    ],
+    solution: "$42000$.",
+  },
+];
